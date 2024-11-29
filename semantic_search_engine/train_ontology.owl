@@ -1,0 +1,71 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:ex="http://example.org/train#">
+
+    <!-- Train Instances -->
+    <rdf:Description rdf:about="http://example.org/train#Express123">
+        <rdf:type rdf:resource="http://example.org/train#Train"/>
+        <ex:trainOperator>National Rail</ex:trainOperator>
+        <ex:trainType>Express</ex:trainType>
+        <ex:hasTrainCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">250</ex:hasTrainCapacity>
+        <ex:operatesOnRoute rdf:resource="http://example.org/train#BlueLine"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/train#Rapid789">
+        <rdf:type rdf:resource="http://example.org/train#Train"/>
+        <ex:trainOperator>City Transit</ex:trainOperator>
+        <ex:trainType>Rapid</ex:trainType>
+        <ex:hasTrainCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">180</ex:hasTrainCapacity>
+        <ex:operatesOnRoute rdf:resource="http://example.org/train#GreenLine"/>
+    </rdf:Description>
+
+    <!-- Route Instances -->
+    <rdf:Description rdf:about="http://example.org/train#BlueLine">
+        <rdf:type rdf:resource="http://example.org/train#Route"/>
+        <ex:routeName>BlueLine</ex:routeName>
+        <ex:departureTime>08:30 AM</ex:departureTime>
+        <ex:arrivalTime>02:15 PM</ex:arrivalTime>
+        <ex:routeDescription>Coastal route covering scenic locations</ex:routeDescription>
+        <ex:hasStartStation rdf:resource="http://example.org/train#GrandCentral"/>
+        <ex:hasEndStation rdf:resource="http://example.org/train#CentralPark"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/train#GreenLine">
+        <rdf:type rdf:resource="http://example.org/train#Route"/>
+        <ex:routeName>GreenLine</ex:routeName>
+        <ex:departureTime>09:00 AM</ex:departureTime>
+        <ex:arrivalTime>01:30 PM</ex:arrivalTime>
+        <ex:routeDescription>Mountain route passing through hilly regions</ex:routeDescription>
+        <ex:hasStartStation rdf:resource="http://example.org/train#DowntownStation"/>
+        <ex:hasEndStation rdf:resource="http://example.org/train#HighlandPoint"/>
+    </rdf:Description>
+
+    <!-- Station Instances -->
+    <rdf:Description rdf:about="http://example.org/train#GrandCentral">
+        <rdf:type rdf:resource="http://example.org/train#Station"/>
+        <ex:stationName>GrandCentral</ex:stationName>
+        <ex:stationLocation>Downtown City</ex:stationLocation>
+        <ex:servesTrain rdf:resource="http://example.org/train#Express123"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/train#CentralPark">
+        <rdf:type rdf:resource="http://example.org/train#Station"/>
+        <ex:stationName>CentralPark</ex:stationName>
+        <ex:stationLocation>City Outskirts</ex:stationLocation>
+        <ex:servesTrain rdf:resource="http://example.org/train#Express123"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/train#DowntownStation">
+        <rdf:type rdf:resource="http://example.org/train#Station"/>
+        <ex:stationName>DowntownStation</ex:stationName>
+        <ex:stationLocation>City Center</ex:stationLocation>
+        <ex:servesTrain rdf:resource="http://example.org/train#Rapid789"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/train#HighlandPoint">
+        <rdf:type rdf:resource="http://example.org/train#Station"/>
+        <ex:stationName>HighlandPoint</ex:stationName>
+        <ex:stationLocation>Hill Station</ex:stationLocation>
+        <ex:servesTrain rdf:resource="http://example.org/train#Rapid789"/>
+    </rdf:Description>
+
+</rdf:RDF>

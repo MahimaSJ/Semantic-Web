@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .results h2 {
+            text-align: center;
+            color: #444;
+        }
+        .result-item {
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #eaeaea;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .result-item span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .result-label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Train Search Engine</h1>
+        <form method="POST">
+            <label for="search_type">Search Type:</label>
+            <select name="search_type" id="search_type" required>
+                <option value="train">Train</option>
+                <option value="route">Route</option>
+                <option value="station">Station</option>
+            </select>
+            <label for="search_value">Search Value:</label>
+            <input type="text" id="search_value" name="search_value" placeholder="Enter search keyword..." required>
+            <button type="submit">Search</button>
+        </form>
+        {% if results %}
+        <div class="results">
+            <h2>Results:</h2>
+            {% if search_type == "train" %}
+                {% for row in results %}
+                <div class="result-item">
+                    <p><span class="result-label">Operator:</span> {{ row.operator }}</p>
+                    <p><span class="result-label">Type:</span> {{ row.type }}</p>
+                    <p><span class="result-label">Capacity:</span> {{ row.capacity }}</p>
+                    <p><span class="result-label">Route:</span> {{ row.route }}</p>
+                </div>
+                {% endfor %}
+            {% elif search_type == "route" %}
+                {% for row in results %}
+                <div class="result-item">
+                    <p><span class="result-label">Route Name:</span> {{ row.routeName }}</p>
+                    <p><span class="result-label">Departure Time:</span> {{ row.departure }}</p>
+                    <p><span class="result-label">Arrival Time:</span> {{ row.arrival }}</p>
+                    <p><span class="result-label">Description:</span> {{ row.description }}</p>
+                    <p><span class="result-label">Start Station:</span> {{ row.startStation }}</p>
+                    <p><span class="result-label">End Station:</span> {{ row.endStation }}</p>
+                </div>
+                {% endfor %}
+            {% elif search_type == "station" %}
+                {% for row in results %}
+                <div class="result-item">
+                    <p><span class="result-label">Station Name:</span> {{ row.stationName }}</p>
+                    <p><span class="result-label">Location:</span> {{ row.stationLocation }}</p>
+                    <p><span class="result-label">Served Train:</span> {{ row.servedTrain }}</p>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
